@@ -1,0 +1,28 @@
+/* styles.css */
+/* 避免与Bootstrap冲突的样式 */
+/* 仅影响此导航栏的样式作用域 */
+.custom-navbar * {
+    box-sizing: border-box;
+}
+
+/* 防止与Bootstrap的导航类冲突 */
+.custom-navbar .nav,
+.custom-navbar .navbar {
+    all: initial;
+}
+
+/* 防止与Bootstrap的动画冲突 */
+.custom-navbar [class*="animate-"] {
+    animation: none !important;
+}
+
+/* 使用 Flexbox 布局使页脚始终位于底部 */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#tab-content {
+    flex-grow: 1;
+}

@@ -1,0 +1,60 @@
+<!-- 主标题区域 -->
+<h1 class="text-3xl md:text-4xl font-bold text-blue-700 mb-6">Main Page</h1>
+
+<!-- 重大新闻公告卡片 -->
+<div id="news-card" class="bg-gray-100 rounded-lg shadow p-4 md:p-6 my-6"></div>
+
+<!-- 响应式图文布局区域 -->
+<div class="flex flex-col md:flex-row gap-6 my-10">
+    <!-- 左侧内容区 -->
+    <div id="left-content" class="w-full lg:w-1/2 xl:w-1/2 2xl:w-1/2"></div>
+
+    <!-- 右侧图片（仅在大屏幕显示） -->
+    <img class="w-full h-auto p-4 md:p-6 hidden lg:block" alt="" src="/docs/assets/word_cloud.svg" />
+</div>
+
+<!-- 名人名言引用板块 -->
+<figure id="quote-section" class="bg-gray-100 rounded-lg p-6 my-10"></figure>
+
+<script>
+    $(document).ready(function () {
+        // 获取重大新闻公告卡片数据
+        $.ajax({
+            url: 'get_data.php',
+            method: 'GET',
+            data: { type: 'news' },
+            success: function (data) {
+                $('#news-card').html(data);
+            },
+            error: function (error) {
+                console.error('Error fetching news:', error);
+            }
+        });
+
+        // 获取响应区域左侧内容区数据
+        $.ajax({
+            url: 'get_data.php',
+            method: 'GET',
+            data: { type: 'left_content' },
+            success: function (data) {
+                $('#left-content').html(data);
+            },
+            error: function (error) {
+                console.error('Error fetching left content:', error);
+            }
+        });
+
+        // 获取名人名言引用板块数据
+        $.ajax({
+            url: 'get_data.php',
+            method: 'GET',
+            data: { type: 'quote' },
+            success: function (data) {
+                $('#quote-section').html(data);
+            },
+            error: function (error) {
+                console.error('Error fetching quote:', error);
+            }
+        });
+    });
+</script>
